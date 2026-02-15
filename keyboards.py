@@ -133,7 +133,7 @@ def get_request_results_keyboard(results: List[Dict]) -> InlineKeyboardMarkup:
         buttons.append([
             InlineKeyboardButton(
                 button_text,
-                callback_data=f"req_{media_type}_{result[\'id\']}"
+                callback_data=f"req_{media_type}_{result['id']}"
             )
         ])
     
