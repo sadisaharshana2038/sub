@@ -74,7 +74,7 @@ def get_search_results_keyboard(
             button_text = button_text[:61] + "..."
         
         buttons.append([
-            InlineKeyboardButton(button_text, callback_data=f"dl_{file[\'file_id\']}")
+            InlineKeyboardButton(button_text, callback_data=f"dl_{file['file_id']}")
         ])
     
     # Pagination buttons
