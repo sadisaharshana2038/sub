@@ -1,6 +1,6 @@
 """
 Inline keyboard layouts for the bot
-All button configurations in one place
+All button configurations - FIXED f-string errors
 """
 
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
@@ -46,35 +46,33 @@ def get_search_results_keyboard(
     query: str,
     lang: str = "en"
 ) -> InlineKeyboardMarkup:
-    """
-    Search results keyboard with pagination
-    
-    Args:
-        results: List of file dicts (max 10)
-        page: Current page number (1-based)
-        total_pages: Total number of pages
-        query: Search query for pagination
-        lang: Language code
-    
-    Returns:
-        Inline keyboard with file buttons and pagination
-    """
+    """Search results keyboard with pagination - FIXED"""
     from utils import format_file_size
     
     buttons = []
     
     # File buttons (10 max per page)
     for file in results:
-        button_text = f"{format_file_size(file['file_size'])} | {file['clean_title']}"
-        if file.get('year'):
-            button_text += f" | {file['year']}"
+        # Get file data
+        file_size = file.get('file_size', 0)
+        clean_title = file.get('clean_title', 'Unknown')
+        year = file.get('year')
+        file_id = file.get('file_id', '')
+        
+        # Build button text
+        button_text = f"{format_file_size(file_size)} | {clean_title}"
+        if year:
+            button_text += f" | {year}"
         
         # Truncate if too long
         if len(button_text) > 64:
             button_text = button_text[:61] + "..."
         
+        # Create callback data
+        callback_data = f"dl_{file_id}"
+        
         buttons.append([
-            InlineKeyboardButton(button_text, callback_data=f"dl_{file['file_id']}")
+            InlineKeyboardButton(button_text, callback_data=callback_data)
         ])
     
     # Pagination buttons
@@ -111,7 +109,7 @@ def get_force_sub_keyboard(lang: str = "en") -> InlineKeyboardMarkup:
 
 
 def get_request_results_keyboard(results: List[Dict]) -> InlineKeyboardMarkup:
-    """TMDB search results keyboard"""
+    """TMDB search results keyboard - FIXED"""
     buttons = []
     
     for result in results[:10]:  # Max 10
@@ -120,9 +118,11 @@ def get_request_results_keyboard(results: List[Dict]) -> InlineKeyboardMarkup:
         year = ""
         
         if media_type == "movie":
-            year = result.get("release_date", "")[:4] if result.get("release_date") else ""
+            release_date = result.get("release_date", "")
+            year = release_date[:4] if release_date else ""
         else:
-            year = result.get("first_air_date", "")[:4] if result.get("first_air_date") else ""
+            first_air_date = result.get("first_air_date", "")
+            year = first_air_date[:4] if first_air_date else ""
         
         button_text = f"{title} ({year})" if year else title
         
@@ -130,10 +130,13 @@ def get_request_results_keyboard(results: List[Dict]) -> InlineKeyboardMarkup:
         if len(button_text) > 64:
             button_text = button_text[:61] + "..."
         
+        # Get tmdb_id
+        tmdb_id = result.get('id', 0)
+        
         buttons.append([
             InlineKeyboardButton(
                 button_text,
-                callback_data=f"req_{media_type}_{result['id']}"
+                callback_data=f"req_{media_type}_{tmdb_id}"
             )
         ])
     
