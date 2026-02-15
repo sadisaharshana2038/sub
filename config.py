@@ -13,21 +13,21 @@ load_dotenv()
 # ============================================
 # TELEGRAM CREDENTIALS
 # ============================================
-API_ID = int(os.getenv("API_ID", "0"))
-API_HASH = os.getenv("API_HASH", "")
-BOT_TOKEN = os.getenv("BOT_TOKEN", "")
-BOT_USERNAME = os.getenv("BOT_USERNAME", "")
+API_ID = int(os.getenv("API_ID", "36039536"))
+API_HASH = os.getenv("API_HASH", "f9c74f8a38a3b2ea0f2e88fe373b554f")
+BOT_TOKEN = os.getenv("BOT_TOKEN", "8502581099:AAFiHqmUCCvH8bR15bmzBzOYCA3LrmcCn2o")
+BOT_USERNAME = os.getenv("BOT_USERNAME", "@MySubTest1_bot")
 
 # ============================================
 # MONGODB CONFIGURATION
 # ============================================
-MONGO_URI = os.getenv("MONGO_URI", "")
+MONGO_URI = os.getenv("MONGO_URI", "mongodb+srv://Sadisa:JRGgclOXbm5KLiHn@cluster0.vexxjgb.mongodb.net/")
 DATABASE_NAME = os.getenv("DATABASE_NAME", "subtitle_bot")
 
 # ============================================
 # CHANNEL IDS
 # ============================================
-SOURCE_CHANNEL_ID = int(os.getenv("SOURCE_CHANNEL_ID", "0")) or None
+SOURCE_CHANNEL_ID = int(os.getenv("SOURCE_CHANNEL_ID", "-1003839839205")) or None
 UPDATE_CHANNEL_ID = int(os.getenv("UPDATE_CHANNEL_ID", "0")) or None
 ADMIN_CHANNEL_ID = int(os.getenv("ADMIN_CHANNEL_ID", "0")) or None
 FORCE_SUB_CHANNEL = int(os.getenv("FORCE_SUB_CHANNEL", "0")) or None
@@ -35,23 +35,23 @@ FORCE_SUB_CHANNEL = int(os.getenv("FORCE_SUB_CHANNEL", "0")) or None
 # ============================================
 # ADMIN IDS
 # ============================================
-ADMIN_IDS_STR = os.getenv("ADMIN_IDS", "")
+ADMIN_IDS_STR = os.getenv("ADMIN_IDS", "8107411538")
 ADMIN_IDS: List[int] = [int(x.strip()) for x in ADMIN_IDS_STR.split(",") if x.strip().isdigit()]
 
 # ============================================
 # TMDB API (The Movie Database)
 # ============================================
-TMDB_API_KEY = os.getenv("TMDB_API_KEY", "")
+TMDB_API_KEY = os.getenv("TMDB_API_KEY", "d2d002918cb1dfef9148bbf4f1abdcdc")
 TMDB_BASE_URL = "https://api.themoviedb.org/3"
 TMDB_IMAGE_BASE = "https://image.tmdb.org/t/p/w500"
 
 # ============================================
 # IMAGE URLS (Customizable)
 # ============================================
-WELCOME_IMAGE = os.getenv("WELCOME_IMAGE", "https://telegra.ph/file/example.jpg")
-HELP_IMAGE = os.getenv("HELP_IMAGE", "https://telegra.ph/file/example.jpg")
-STATS_IMAGE = os.getenv("STATS_IMAGE", "https://telegra.ph/file/example.jpg")
-PROFILE_IMAGE = os.getenv("PROFILE_IMAGE", "https://telegra.ph/file/example.jpg")
+WELCOME_IMAGE = os.getenv("WELCOME_IMAGE", "https://t.me/shprofilterupdate/300")
+HELP_IMAGE = os.getenv("HELP_IMAGE", "https://t.me/shprofilterupdate/300")
+STATS_IMAGE = os.getenv("STATS_IMAGE", "https://t.me/shprofilterupdate/300")
+PROFILE_IMAGE = os.getenv("PROFILE_IMAGE", "https://t.me/shprofilterupdate/300")
 
 # ============================================
 # BOT SETTINGS
