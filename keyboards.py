@@ -65,7 +65,7 @@ def get_search_results_keyboard(
     
     # File buttons (10 max per page)
     for file in results:
-        button_text = f"{format_file_size(file[\'file_size\'])} | {file[\'clean_title\']}"
+        button_text = f"{format_file_size(file[\'file_size'])} | {file[\'clean_title']}"
         if file.get(\'year\'):
             button_text += f" | {file[\'year\']}"
         
